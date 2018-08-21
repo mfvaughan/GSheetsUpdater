@@ -25,7 +25,7 @@ df_cols, df_data = df.columns.tolist(), df.values.tolist()
 values = ([df_cols] + df_data)
 
 # Some variables ...
-SPREADSHET_ID = '*************'
+SPREADSHEET_ID = '*************'
 RANGE_START = 'A1' # Always start at A1
 RANGE_END_CHAR = col_string(len(df_cols)) # Based on the # of columns of data
 RANGE_END_INT = len(values) # Based on the number of rows of data
@@ -44,6 +44,6 @@ body = {
   'data': data
 }
 
-result = service.spreadsheets().values().batchUpdate(spreadsheetId=SPREADSHET_ID, body=body)
+result = service.spreadsheets().values().batchUpdate(spreadsheetId=SPREADSHEET_ID, body=body)
 response = result.execute()
 pprint(response)

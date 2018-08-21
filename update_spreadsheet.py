@@ -6,6 +6,7 @@ from httplib2 import Http
 from oauth2client import file, client, tools
 import pandas as pd
 from helpers import col_string
+from credentials import SPREADSHEET_ID, TEST_DATA
 
 # Credentials & stuff
 SCOPES =  ['https://www.googleapis.com/auth/drive',
@@ -20,12 +21,11 @@ if not creds or creds.invalid:
 service = discovery.build('sheets', 'v4', credentials=creds)
 
 # Test data
-df = pd.read_csv("TEST_DATA_PATH")
+df = pd.read_csv(TEST_DATA)
 df_cols, df_data = df.columns.tolist(), df.values.tolist()
 values = ([df_cols] + df_data)
 
 # Some variables ...
-SPREADSHEET_ID = '*************'
 RANGE_START = 'A1' # Always start at A1
 RANGE_END_CHAR = col_string(len(df_cols)) # Based on the # of columns of data
 RANGE_END_INT = len(values) # Based on the number of rows of data

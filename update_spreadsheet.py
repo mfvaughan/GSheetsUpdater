@@ -19,10 +19,9 @@ if not creds or creds.invalid:
     flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
     creds = tools.run_flow(flow, store)
 
-
 service = discovery.build('sheets', 'v4', credentials=creds)
 
-def update_gsheet_data(worksheet, data):
+def update_gsheet_data(worksheet, data, data_range=None):
     # Test data
     if type(data) is list:
         values = data
@@ -39,12 +38,16 @@ def update_gsheet_data(worksheet, data):
     SHEET_NAME = ''
     RANGE_START = 'A1' # Always start at A1
     VALUE_INPUT_OPTION = 'USER_ENTERED'
+    if data_range is None:
+        RANGE = '{}!{}:{}{}'.format(SHEET_NAME, RANGE_START, RANGE_END_CHAR, RANGE_END_INT)
+    else:
+        RANGE = data_range
 
     # Build the request ...
     data = [
         {
             'values': values,
-            'range': '{}!{}:{}{}'.format(SHEET_NAME, RANGE_START, RANGE_END_CHAR, RANGE_END_INT)
+            'range': RANGE
         }
     ]
 

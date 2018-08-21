@@ -20,7 +20,7 @@ if not creds or creds.invalid:
 service = discovery.build('sheets', 'v4', credentials=creds)
 
 # Test data
-df = pd.read_csv(r"C:\Users\MV\Documents\Code\g_sheets\test.csv")
+df = pd.read_csv("TEST_DATA_PATH")
 df_cols, df_data = df.columns.tolist(), df.values.tolist()
 values = ([df_cols] + df_data)
 

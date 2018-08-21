@@ -18,14 +18,19 @@ creds = store.get()
 if not creds or creds.invalid:
     flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
     creds = tools.run_flow(flow, store)
+
+
 service = discovery.build('sheets', 'v4', credentials=creds)
 
+
+def update
 # Test data
 df = pd.read_csv(TEST_DATA)
 df_cols, df_data = df.columns.tolist(), df.values.tolist()
 values = ([df_cols] + df_data)
 
 # Some variables ...
+SHEET_NAME = ''
 RANGE_START = 'A1' # Always start at A1
 RANGE_END_CHAR = col_string(len(df_cols)) # Based on the # of columns of data
 RANGE_END_INT = len(values) # Based on the number of rows of data
@@ -35,7 +40,7 @@ VALUE_INPUT_OPTION = 'USER_ENTERED'
 data = [
     {
         'values': values,
-        'range': '{}:{}{}'.format(RANGE_START, RANGE_END_CHAR, RANGE_END_INT)
+        'range': '{}!{}:{}{}'.format(SHEET_NAME, RANGE_START, RANGE_END_CHAR, RANGE_END_INT)
     }
 ]
 

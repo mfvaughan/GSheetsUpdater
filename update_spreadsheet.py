@@ -25,7 +25,7 @@ df_cols, df_data = df.columns.tolist(), df.values.tolist()
 values = ([df_cols] + df_data)
 
 # Some variables ...
-SPREADSHET_ID = '1S-5IU1Lb14EztrHewwW4e2Ymht_VpPwBAq-IFmeUYN8'
+SPREADSHET_ID = '*************'
 RANGE_START = 'A1' # Always start at A1
 RANGE_END_CHAR = col_string(len(df_cols)) # Based on the # of columns of data
 RANGE_END_INT = len(values) # Based on the number of rows of data

@@ -22,8 +22,6 @@ if not creds or creds.invalid:
 
 service = discovery.build('sheets', 'v4', credentials=creds)
 
-
-def update
 # Test data
 df = pd.read_csv(TEST_DATA)
 df_cols, df_data = df.columns.tolist(), df.values.tolist()

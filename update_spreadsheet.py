@@ -21,7 +21,7 @@ if not creds or creds.invalid:
 
 service = discovery.build('sheets', 'v4', credentials=creds)
 
-def update_gsheet_data(worksheet, data, data_range=None):
+def update_gsheet_data(spreadsheet_id, wks_name, data, data_range=None):
     # Test data
     if type(data) is list:
         values = data
@@ -35,7 +35,7 @@ def update_gsheet_data(worksheet, data, data_range=None):
         RANGE_END_INT = len(values) # Based on the number of rows of data
 
     # Some more variables ...
-    SHEET_NAME = ''
+    SHEET_NAME = wks_name
     RANGE_START = 'A1' # Always start at A1
     VALUE_INPUT_OPTION = 'USER_ENTERED'
     if data_range is None:
@@ -56,11 +56,11 @@ def update_gsheet_data(worksheet, data, data_range=None):
     'data': data
     }
 
-    result = service.spreadsheets().values().batchUpdate(spreadsheetId=SPREADSHEET_ID, body=body)
+    result = service.spreadsheets().values().batchUpdate(spreadsheetId=spreadsheet_id, body=body)
     response = result.execute()
     pprint(response)
     
     return response
     
 if __name__ == "__main__":   
-    update_gsheet_data(SPREADSHEET_ID, TEST_DATA)
+    update_gsheet_data(SPREADSHEET_ID, "Sheet1", TEST_DATA)
